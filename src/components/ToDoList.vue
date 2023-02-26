@@ -19,7 +19,7 @@ function getTodos() {
     })
     .then((dataJSON) => {
       console.log(dataJSON);
-      // -- vider la liste des choselivres
+      // -- vider la liste des livres
       listelivre.splice(0, listelivre.length);
       // pour chaque donnée renvoyée par l'API
       //  créer un objet instance de la classe Livre
@@ -38,7 +38,7 @@ function handlerAdd(livre) {
   console.log(livre, JSON.stringify(livre));
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  // --  le libelle de la nouvelle chose est envoyé au serveur
+
   //  via le body de la req AJAX
   const fetchOptions = {
     method: "POST",
