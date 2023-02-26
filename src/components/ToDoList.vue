@@ -19,10 +19,10 @@ function getTodos() {
     })
     .then((dataJSON) => {
       console.log(dataJSON);
-      // -- vider la liste des choses
+      // -- vider la liste des choselivres
       listelivre.splice(0, listelivre.length);
       // pour chaque donnée renvoyée par l'API
-      //  créer un objet instance de la classe Chose
+      //  créer un objet instance de la classe Livre
       //  et l'ajouter dans la liste listelivre
       dataJSON.forEach((liv) =>
         listelivre.push(new Livre(liv.id, liv.titre, liv.qtestock,liv.prix ))
@@ -64,7 +64,7 @@ function handlerDelete(id) {
   const fetchOptions = {
     method: "DELETE",
   };
-  // -- l'id de la chose à supprimer doit être
+  // -- l'id du livre à supprimer doit être
   //  ajouté à la fin de l'url
   fetch(url + "/" + id, fetchOptions)
     .then((response) => {
@@ -84,8 +84,7 @@ function handlerSearch(mottest) {
   const fetchOptions = {
     method: "GET",
   };
-  // -- l'id de la chose à supprimer doit être
-  //  ajouté à la fin de l'url
+ 
   fetch(url + "?search=" + mottest, fetchOptions)
     .then((response) => {
       return response.json();
@@ -94,7 +93,7 @@ function handlerSearch(mottest) {
       console.log("Mes livre dans la fonction search", dataJSON);
      listelivre.splice(0, listelivre.length);
       // pour chaque donnée renvoyée par l'API
-      //  créer un objet instance de la classe Chose
+      //  créer un objet instance de la classe Livre
       //  et l'ajouter dans la liste listelivre
       dataJSON.forEach((liv) =>
         listelivre.push(new Livre(liv.id, liv.titre, liv.qtestock,liv.prix )))})
@@ -111,7 +110,7 @@ function handlerDecrement(livre) {
 
 
   console.log(livre);
-  // -- faire la chose
+
   livre.Todecrement();
 
   (livre.qtestock <= 0?handlerDelete(livre.id):Decrement )
@@ -120,7 +119,7 @@ function handlerDecrement(livre) {
     // -- entête http pour la req AJAX
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  // -- la chose modifiée est envoyé au serveur
+  // -- le livre modifiée est envoyé au serveur
   //  via le body de la req AJAX
   const fetchOptions = {
     method: "PUT",
@@ -134,7 +133,7 @@ function handlerDecrement(livre) {
     })
     .then((dataJSON) => {
       console.log(dataJSON);
-      // actualiser la liste des choses
+      // actualiser la liste des livres
       getTodos();
     })
     .catch((error) => console.log(error));
@@ -144,7 +143,7 @@ function handlerDecrement(livre) {
 
 function handlerIncrement(livre) {
   console.log(livre);
-  // -- faire la chose
+
   livre.Toincrement();
   // -- entête http pour la req AJAX
   let myHeaders = new Headers();
@@ -163,7 +162,7 @@ function handlerIncrement(livre) {
     })
     .then((dataJSON) => {
       console.log(dataJSON);
-      // actualiser la liste des choses
+      // actualiser la liste des livres
       getTodos();
     })
     .catch((error) => console.log(error));
